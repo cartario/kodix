@@ -11,6 +11,15 @@
   }
 
   .popup{
-    color: red;
+    width: 453px;
+    .popup__description {
+      width: 100%;
+    }
+  }
+
+  .popup__type {
+    p {
+      margin-right: 76px;
+    }
   }
 }

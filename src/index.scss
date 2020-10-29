@@ -156,6 +156,16 @@ $greyBackground: rgba(0, 0, 0, 0.3);
     margin: 10px;
     font-size: 8vw;
   }
+  .popup{
+    width: 100%;
+    .popup__description{
+      width: 100%;
+    }
+  }
+
+  .popup__type {
+    flex-wrap: wrap;
+  }
 }
 
 //для мобилки
