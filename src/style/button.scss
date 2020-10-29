@@ -1,0 +1,42 @@
+
+.opened {
+  background: $greyBackground;  
+}
+
+.button {
+  width: 198px;
+  height: 56px;
+  font-family: inherit;
+  font-size: 16px; 
+  background: transparent;
+  color: white;
+  border: 1px solid #FFFFFF;
+  border-radius: 6px;
+  filter: drop-shadow(0px 0px 44px #CFDAE7);
+  box-sizing: border-box;
+  outline: none;
+  cursor: pointer;
+  
+  &--add {
+    width: 100%;  
+    background: $primaryBackground;    
+    box-shadow: 0px 0px 24px rgba(234, 0, 41, 0.33); 
+    
+    &:hover {
+      background: #EA0029;
+    }
+  
+    &:active {
+      background: #EA0029;
+    }
+  } 
+  
+  &:disabled {
+    background: #BEC5CC;
+    box-shadow: none;
+  }
+}
+
+.error {
+  color: red;
+}

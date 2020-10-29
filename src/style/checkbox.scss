@@ -1,0 +1,33 @@
+.checkbox {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  border-bottom: 1px solid #DFE3E6;
+}
+
+.checkbox__field{
+  display: none;
+}
+
+.checkbox__field + span {
+  width: 20px;
+  height: 20px;
+  margin-right: 11px;
+  border: 1px solid #DFE3E6;
+  border-radius: 6px;
+  cursor: pointer;
+  &:hover {
+    border-color: black;
+  }
+}
+
+.checkbox__field:checked + span {
+  background: url("../img/checkbox.png");
+}
+
+.checkbox__label{
+  cursor: pointer;
+  span {
+    color: grey;
+  }
+}

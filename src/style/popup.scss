@@ -1,0 +1,94 @@
+.popup{
+  position: absolute;
+  width: 552px;
+  padding: 32px;
+  background: white;
+  border-radius: 30px;
+  box-sizing: border-box;
+
+  img{
+    position: absolute;
+    top: 27px;
+    right: 27px;
+  }
+
+  h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 28px;    
+  }
+
+  .popup__description {
+    width: 450px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    line-height: 24px;
+    color: #808080;
+  }
+}
+
+.popup__salary {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 8px;  
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  input{
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 0 8px;
+    border: 1px solid #DFE3E6;    
+    border-radius: 3px;
+    font-size: 14px;    
+  }
+}
+
+.popup__type {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  margin-top: 20px;
+
+  p {
+    margin: 0 32px 0 0;
+    padding: 0;
+    font-size: 14px;
+    font-weight: bold;    
+  }
+
+  .popup__buttons {
+    display: flex;
+  }
+
+  .popup__button {
+    display: flex;
+    justify-content: space-around;    
+    align-items: center;    
+    width: 73px;
+    height: 36px;
+    margin-right: 16px;    
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    cursor: pointer;   
+  }
+
+  .popup__button--filled{
+    background: $primaryBackground;
+    color: white;
+    &:hover, &:active{
+      background: #EA0029;;
+    }    
+  }
+
+  .popup__button--outlined{
+    background: #EEF0F2; 
+    &:hover, &:active{
+      background: #DFE3E6;
+    }   
+  }
+}

@@ -1,4 +1,5 @@
 export const MIN_SALARY = 12000;
+export const options = ["Платеж", "Срок"];
 const PENI = 0.13;
 const MAX_CASHBACK = 260000;
 

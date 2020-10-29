@@ -1,3 +1,23 @@
+//для mini мобилки
+@media (max-width: $mobileWidth) {
+  .button {
+    width: 100%;
+    margin: 10px;
+    font-size: 8vw;
+  }
+  .popup{
+    width: 100%;
+    .popup__description{
+      width: 100%;
+    }
+  }
+
+  .popup__type {
+    flex-wrap: wrap;
+  }
+}
+
+//для моб
 @media (min-width: $mobileWidth) and (max-width: $tabletWidth) { 
   
   .button {

@@ -1,18 +1,13 @@
 import React, {useState, useEffect, memo} from 'react';
 import closeImg from '../img/vector.png';
-import {getPays} from '../utils';
-import {MIN_SALARY} from '../utils';
+import {getPays, MIN_SALARY, options} from '../utils';
+import Checkboxes from './checkboxes';
 
-const options = ["Платеж", "Срок"];
-
-const Popup = ({onClose}) => {
-  
+const Popup = ({onClose}) => {  
   const [form, setForm] = useState("");
   const [isShow, setSalary] = useState(false);
-  const [active, setActive] = useState("Платеж");
+  const [active, setActive] = useState(options[0]);
   const pays = getPays(form);
-   // const rub = '₽'; 
-
   console.log({form, isShow, active, pays});
 
   const handleClickRadio = (e) => {    
@@ -39,12 +34,12 @@ const Popup = ({onClose}) => {
   useEffect((e)=>{
     const handleKeyDown = (e) => {
       if(e.keyCode === 27){
-        onClose(true);
-        window.removeEventListener('keydown', handleKeyDown);        
-      }      
+        onClose(true);             
+      } 
+      document.body.removeEventListener('keydown', handleKeyDown);            
     }
-    window.addEventListener('keydown', handleKeyDown);
-  })
+    document.body.addEventListener('keydown', handleKeyDown);
+  })  
 
   return (
     <div className="App__popup popup">
@@ -65,29 +60,10 @@ const Popup = ({onClose}) => {
               onChange={handleChange}
               placeholder="Введите данные"
             />
-            {form.length > 1 & form < MIN_SALARY & !pays.length? <span className="error">Не менее 12000руб</span> : ""}
+            {form.length > 1 & form < MIN_SALARY & !pays.length? <span className="error">Не менее {MIN_SALARY}руб</span> : ""}
           </div>
           
-          {isShow &&
-          <div className="popup__checkboxes checkboxes">
-            <h3 className="checkboxes__title">Итого можете внести в качестве досрочных:</h3>
-            <ul className="checkboxes__list">
-              {pays.map((pay, i)=>
-              <li className="checkboxes__item checkbox" key={pay+i}>
-                <input                
-                  className="checkbox__field"
-                  id={`year-${i+1}`}
-                  value={pay}
-                  type="checkbox"/><span></span>
-                <label
-                  className="checkbox__label" 
-                  htmlFor={`year-${i+1}`}>{pay} рублей <span>в{i===1 && "о"} {i+1}-{i===1 && "о"}й год</span>
-                </label>
-              </li>
-              )}
-              
-            </ul>
-          </div>}
+          {isShow && <Checkboxes pays={pays}/>}
           <div className="popup__type">
             <p>Что уменьшаем?</p>
             <div className="popup__buttons">

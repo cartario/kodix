@@ -1,0 +1,19 @@
+.App{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  min-width:100%; 
+  min-height:100%;
+  font-family: "LabGrotesque";
+  background: $primaryBackground; 
+  overflow: auto;  
+}
+
+.App__button {
+  &:hover, &:active {
+    background: white;
+    color: black;
+    box-shadow: none;
+  }  
+}
