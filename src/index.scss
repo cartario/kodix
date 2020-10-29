@@ -1,3 +1,5 @@
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;  
+  box-sizing: border-box;  
 }
 
 code {
@@ -24,7 +27,6 @@ $primaryBackground: linear-gradient(255.35deg, #DC3131 0.83%, rgba(255, 79, 79, 
 linear-gradient(0deg, #FF5E56, #FF5E56);
 $greyBackground: rgba(0, 0, 0, 0.3);
 
-
 .App{
   display: flex;
   justify-content: space-around;
@@ -33,18 +35,99 @@ $greyBackground: rgba(0, 0, 0, 0.3);
   min-width:100%; 
   min-height:100%;
   font-family: "LabGrotesque";
-  background: $primaryBackground;    
+  background: $primaryBackground;  
 }
 
 .popup{
   position: absolute;
   width: 552px;
-  height: 440px;
+  // height: 440px;
+  padding: 32px;
   background: white;
+  border-radius: 30px;
+  box-sizing: border-box;
+
+  img{
+    position: absolute;
+    top: 27px;
+    right: 27px;
+  }
+
+  h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 28px;    
+  }
+
+  .popup__description {
+    width: 450px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    line-height: 24px;
+    color: #808080;
+  }
+}
+
+.popup__salary {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 8px;  
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  input{
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 0 8px;
+    border: 1px solid #DFE3E6;    
+    border-radius: 3px;
+    font-size: 14px;
+    color: #BEC5CC;
+  }
+}
+
+.popup__type {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+
+  p {
+    margin: 0 32px 0 0;
+    padding: 0;
+    font-size: 14px;
+    font-weight: bold;    
+  }
+
+  .popup__buttons {
+    display: flex;
+  }
+
+  .popup__button {
+    display: flex;
+    justify-content: space-around;    
+    align-items: center;    
+    width: 73px;
+    height: 36px;
+    margin-right: 16px;    
+    border-radius: 50px;
+    border: none;    
+  }
+
+  .popup__button--filled{
+    background: $primaryBackground;
+    color: white;
+  }
+
+  .popup__button--outlined{
+    background: #EEF0F2;    
+  }
 }
 
 .opened {
-  background: $greyBackground; 
+  background: $greyBackground;  
 }
 
 .button {
@@ -57,7 +140,13 @@ $greyBackground: rgba(0, 0, 0, 0.3);
   border: 1px solid #FFFFFF;
   border-radius: 6px;
   filter: drop-shadow(0px 0px 44px #CFDAE7);
-  box-sizing: border-box;  
+  box-sizing: border-box;
+  
+  &--add {
+    width: 100%;  
+    background: $primaryBackground;    
+    box-shadow: 0px 0px 24px rgba(234, 0, 41, 0.33); 
+  }
 }
 
 //для mini мобилки
@@ -70,24 +159,7 @@ $greyBackground: rgba(0, 0, 0, 0.3);
 }
 
 //для мобилки
-@media (min-width: $mobileWidth) and (max-width: $tabletWidth) {
-  .button {
-    width: 149px;
-    height: 40px;    
-    font-size: 12px;    
-  }
-
-  .popup{
-    width: 100%;
-    height: 100%;
-  }
-}
+@import './mobile.scss';
 
 //для планшета
-@media (min-width: $tabletWidth) and (max-width: $desktopWidth){
-  .button {
-    width: 198px;
-    height: 56px;    
-    font-size: 16px;    
-  }
-}
+@import './tablet.scss';

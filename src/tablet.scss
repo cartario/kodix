@@ -1,0 +1,16 @@
+@media (min-width: $tabletWidth) and (max-width: $desktopWidth){
+  .button {
+    width: 198px;
+    height: 56px;    
+    font-size: 16px;  
+    &--add{
+      width: 100%;
+      margin: 0;
+      border: none;
+    }  
+  }
+
+  .popup{
+    color: red;
+  }
+}
