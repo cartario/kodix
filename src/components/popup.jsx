@@ -1,19 +1,38 @@
 import React, {useState, useEffect} from 'react';
 import closeImg from '../img/vector.png';
-import checkboxImg from '../img/checkbox.png';
+import {getPays} from '../utils';
+import {MIN_SALARY} from '../utils';
+
+const options = ["Платеж", "Срок"];
 
 const Popup = ({onClose}) => {
   const [form, setForm] = useState("");
-  const rub = '₽';
+  const [isShow, setSalary] = useState(false);
+  const [active, setActive] = useState("Платеж");
+
+  const handleClickRadio = (e) => {    
+    const value = e.target.textContent;
+    setActive(value);    
+  }
+  
+  // const rub = '₽';
+  
+  const pays = getPays(form);
+ 
+  const handleClick = () => {
+    if(form){
+      setSalary(true);      
+    }    
+  }
 
   const handleClosePopup = () => {
     onClose(true);
   }
 
   const handleChange = (e) => {
-    const value = e.target.value;
-    
-    setForm(value);    
+    const value = e.target.value;    
+    setForm(value);
+    setSalary(true);    
   }
 
   useEffect((e)=>{
@@ -30,7 +49,7 @@ const Popup = ({onClose}) => {
     <div className="App__popup popup">
       <div>
       <div>      
-        <img onClick={handleClosePopup} src={closeImg}/>
+        <img onClick={handleClosePopup} src={closeImg} alt="close-btn"/>
           <h2>Налоговый вычет</h2>
           <p className="popup__description">Используйте налоговый вычет чтобы погасить ипотеку досрочно. 
             Размер налогового вычета составляет не более 13% от своего официального годового дохода.
@@ -45,62 +64,46 @@ const Popup = ({onClose}) => {
               onChange={handleChange}
               placeholder="Введите данные"
             />
+            {form.length > 1 & form < MIN_SALARY & !pays.length? <span className="error">Не менее 12000руб</span> : ""}
           </div>
           
+          {isShow &&
           <div className="popup__checkboxes checkboxes">
             <h3 className="checkboxes__title">Итого можете внести в качестве досрочных:</h3>
             <ul className="checkboxes__list">
-              <li className="checkboxes__item checkbox">
+              {pays.map((pay, i)=>
+              <li className="checkboxes__item checkbox" key={pay+i}>
                 <input                
                   className="checkbox__field"
-                  id="year-1"
+                  id={`year-${i+1}`}
+                  value={pay}
                   type="checkbox"/><span></span>
                 <label
                   className="checkbox__label" 
-                  htmlFor="year-1">78 000 рублей <span>в 1-ый год</span>
+              htmlFor={`year-${i+1}`}>{pay} рублей <span>в{i===1 && "о"} {i+1}-{i===1 && "о"}й год</span>
                 </label>
               </li>
-              <li className="checkboxes__item checkbox">
-                <input 
-                  className="checkbox__field"
-                  id="year-2"
-                  type="checkbox"/><span></span>
-                <label
-                  className="checkbox__label" 
-                  htmlFor="year-2">78 000 рублей <span>во 2-ой год</span>
-                </label>
-              </li>
-              <li className="checkboxes__item checkbox">
-                <input 
-                  className="checkbox__field"
-                  id="year-3"
-                  type="checkbox"/><span></span>
-                <label
-                  className="checkbox__label" 
-                  htmlFor="year-3">78 000 рублей <span>во 2-ой год</span>
-                </label>
-              </li>
-              <li className="checkboxes__item checkbox">
-                <input 
-                  className="checkbox__field"
-                  id="year-4"
-                  type="checkbox"/><span></span>
-                <label
-                  className="checkbox__label" 
-                  htmlFor="year-4">78 000 рублей <span>во 2-ой год</span>
-                </label>
-              </li>
+              )}
+              
             </ul>
-          </div>
+          </div>}
           <div className="popup__type">
             <p>Что уменьшаем?</p>
             <div className="popup__buttons">
-              <button className="popup__button popup__button--filled">Платеж</button>
-              <button className="popup__button popup__button--outlined">Срок</button>
+              {!!options && options.map((option)=>
+              <button 
+                key={option} 
+                onClick={handleClickRadio} 
+                type="radio" 
+                name="paytype" 
+                className={option===active ?
+                "popup__button popup__button--filled":
+                "popup__button popup__button--outlined"}>{option}</button>
+              )}              
             </div>
           </div>
       </div>
-      <button className="button button--add">Добавить</button>  
+      <button onClick={handleClick} className="button button--add">Добавить</button>  
       </div>      
     </div>
   );
