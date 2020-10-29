@@ -213,20 +213,13 @@ ul {
     &:active {
       background: #EA0029;
     }
-  }
-
-  
+  } 
   
   &:disabled {
     background: #BEC5CC;
     box-shadow: none;
   }
 }
-
-// .disabled{
-//   background: grey;
-//   box-shadow: none;
-// }
 
 .error {
   color: red;

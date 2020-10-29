@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Popup from './components/popup';
 
 function App() {
+  
   const [visible, setVisible] = useState(false);
 
   const handleToggle = () => {

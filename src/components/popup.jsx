@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, memo} from 'react';
 import closeImg from '../img/vector.png';
 import {getPays} from '../utils';
 import {MIN_SALARY} from '../utils';
@@ -6,18 +6,19 @@ import {MIN_SALARY} from '../utils';
 const options = ["Платеж", "Срок"];
 
 const Popup = ({onClose}) => {
+  
   const [form, setForm] = useState("");
   const [isShow, setSalary] = useState(false);
   const [active, setActive] = useState("Платеж");
+  const pays = getPays(form);
+   // const rub = '₽'; 
+
+  console.log({form, isShow, active, pays});
 
   const handleClickRadio = (e) => {    
     const value = e.target.textContent;
     setActive(value);    
-  }
-  
-  // const rub = '₽';
-  
-  const pays = getPays(form);
+  }  
  
   const handleClick = () => {
     if(form){
@@ -80,7 +81,7 @@ const Popup = ({onClose}) => {
                   type="checkbox"/><span></span>
                 <label
                   className="checkbox__label" 
-              htmlFor={`year-${i+1}`}>{pay} рублей <span>в{i===1 && "о"} {i+1}-{i===1 && "о"}й год</span>
+                  htmlFor={`year-${i+1}`}>{pay} рублей <span>в{i===1 && "о"} {i+1}-{i===1 && "о"}й год</span>
                 </label>
               </li>
               )}
@@ -109,4 +110,4 @@ const Popup = ({onClose}) => {
   );
 };
 
-export default Popup;
+export default memo(Popup);
