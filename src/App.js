@@ -1,9 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react';
+import Popup from './components/popup';
 
 function App() {
+  const [visible, setVisible] = useState(false);
+
+  const handleToggle = () => {
+    setVisible(!visible);
+  };
+
   return (
     <div className="App">
-      <button className="App__button button">Налоговый вычет</button>
+      <button onClick={handleToggle}className="App__button button">Налоговый вычет...</button>
+      {visible && <Popup onClose={handleToggle}/>}
     </div>
   );
 }
