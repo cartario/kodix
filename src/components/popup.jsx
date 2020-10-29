@@ -8,6 +8,8 @@ const Popup = ({onClose}) => {
   const [isShow, setSalary] = useState(false);
   const [active, setActive] = useState(options[0]);
   const pays = getPays(form);
+
+  const invalid = form.length > 1 & form < MIN_SALARY & !pays.length;
   console.log({form, isShow, active, pays});
 
   const handleClickRadio = (e) => {    
@@ -17,7 +19,8 @@ const Popup = ({onClose}) => {
  
   const handleClick = () => {
     if(form){
-      setSalary(true);      
+      setSalary(true);
+      onClose(true);      
     }    
   }
 
@@ -53,6 +56,7 @@ const Popup = ({onClose}) => {
           <div className="popup__salary">
             <label htmlFor="salary">Ваша зарплата в месяц</label>
             <input
+              autoFocus
               id="salary"
               name="salary"              
               value={form}
@@ -60,7 +64,7 @@ const Popup = ({onClose}) => {
               onChange={handleChange}
               placeholder="Введите данные"
             />
-            {form.length > 1 & form < MIN_SALARY & !pays.length? <span className="error">Не менее {MIN_SALARY}руб</span> : ""}
+            {invalid? <span className="error">Не менее {MIN_SALARY}руб</span> : ""}
           </div>
           
           {isShow && <Checkboxes pays={pays}/>}
@@ -80,7 +84,7 @@ const Popup = ({onClose}) => {
             </div>
           </div>
       </div>
-      <button onClick={handleClick} className="button button--add">Добавить</button>  
+      <button onClick={handleClick} className="button button--add" disabled={invalid}>Добавить</button>  
       </div>      
     </div>
   );
